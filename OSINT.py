@@ -1,12 +1,12 @@
 from multiprocessing.sharedctypes import Value
-from textwrap import indent
 import requests
 import urllib3
 from bs4 import BeautifulSoup
 from jsonpath_ng import jsonpath, parse
 
 def creat_md5_list():
-    # test file: 0165e5d7-51e6-4c2e-a382-1dd1e706f7bb.json
+    # test file1: 0165e5d7-51e6-4c2e-a382-1dd1e706f7bb.json
+    # test file2: 4b475a5f-ea47-4f2f-aea3-d8ba9bd1b6b6.json
     urllib3.disable_warnings()
     r1 = requests.get("https://www.circl.lu/doc/misp/feed-osint/0165e5d7-51e6-4c2e-a382-1dd1e706f7bb.json", verify=False)
     #print(r1.status_code)
@@ -15,10 +15,10 @@ def creat_md5_list():
     jsonpath1 = parse("Event.Object[*].Attribute[*].[type,value]")  #Event->Object->Attribute->type, value，解析Json第四層的type、Value
     uuid = intelli['Event']['uuid']
     #print(uuid)
-    with open('temp.txt', 'a') as f:
+    with open('temp.txt', 'w') as f:
         #f.write(uuid)
         for match1 in jsonpath1.find(intelli):  #creat a temp list
-            print(match1.value)
+            #print(match1.value)
             f.write(match1.value)
             f.write('\n')
     organize_list()
@@ -34,7 +34,7 @@ def organize_list():
             if line == 'md5\n':     #md5的下一行為hash value
                 print('md5 yes')
                 line = f.readline()
-                hash_file = line[:-2]
+                hash_file = line[:-1]
                 store.append(hash_file)
             line = f.readline()
             if line == '':
@@ -48,16 +48,16 @@ def organize_list():
 
 def vt_scan(uuid):
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
-    params1 = { 'apikey' : 'api'}
+    params1 = { 'apikey' : ''}
     checkFlag = False       #CheckFlag如果為真，代表此檔案未受過防毒檢測(不可信)
     checkList = list()      #情資內部可能有許多hash file，一一檢測並儲存
     count = 0               #positive數量
     positiveRatio = 0.0     #positive與total的比值
-
+    print('uuid: ')
+    print(uuid)
     with open('md5_file.txt', 'r') as f:
-        print(uuid)
         for hash_file in f.readlines():
-            hash_file = hash_file[:-2]
+            hash_file = hash_file[:-1]
             print("The file hash is: "+hash_file)
             params1['resource'] = hash_file   
             response = requests.get(url, params=params1)
@@ -68,19 +68,29 @@ def vt_scan(uuid):
                 checkList.append(checkFlag)
                 checkFlag = False
             else:
-                print(data)
-                print('='*200)
+                #print(data)
                 print(data['positives'])
                 print(data['total'])
-    print('checkList is: '+checkList)
+                print('='*200)
+                checkList.append(checkFlag)
+    print('Checklist is: ')
+    print(checkList)
     for test in checkList:
         if test == True:
             count = count + 1 
-    positiveRatio = count / len(checkList)
-    print('The Positive Ratio is: {:.2f}%'.format(positiveRatio*100))
-
-#def checkFalsePositive():
-
+    try:
+        positiveRatio = count / len(checkList)
+        print('The Positive Ratio is: {:.2f}%'.format(positiveRatio*100))
+    except:
+        with open('type1Error_uuid.txt', 'a') as f:
+            f.write(uuid)
+            f.write('\n')
+            print('No positive record!')
+    
+    if positiveRatio > 0.5:
+        with open('type1Error_uuid.txt', 'a') as f:
+            f.write(uuid)
+            f.write('\n')
 
 def main():
     uuid = creat_md5_list()
