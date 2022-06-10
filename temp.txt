@@ -1,0 +1,54 @@
+0165e5d7-51e6-4c2e-a382-1dd1e706f7bblink
+https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.csv
+link
+https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.json
+text
+Twitter
+text
+We've updated our IoC feed to include hashes for #DearCry ransomware
+
+Access the feed here:
+
+JSON: https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.json
+
+CSV: https://raw.githubusercontent.com/Azure/Azure-Se
+text
+Informative
+text
+Unverified
+md5
+cdda3913408c4c46a6c575421485fa5b
+sha1
+56eec7392297e7301159094d7e461a696fe5b90f
+sha256
+e044d9f2d0f1260c3f4a543a1e67f33fcac265be114a1b135fd575b860d2b8c6
+datetime
+2021-03-12T08:23:23+00:00
+link
+https://www.virustotal.com/gui/file/e044d9f2d0f1260c3f4a543a1e67f33fcac265be114a1b135fd575b860d2b8c6/detection/f-e044d9f2d0f1260c3f4a543a1e67f33fcac265be114a1b135fd575b860d2b8c6-1615537403
+text
+33/68
+md5
+c6eeb14485d93f4e30fb79f3a57518fc
+sha1
+b7d99521348d319f57d2b2ba7045295fc99cf6a7
+sha256
+feb3e6d30ba573ba23f3bd1291ca173b7879706d1fe039c34d53a4fdcdf33ede
+datetime
+2021-03-12T08:28:27+00:00
+link
+https://www.virustotal.com/gui/file/feb3e6d30ba573ba23f3bd1291ca173b7879706d1fe039c34d53a4fdcdf33ede/detection/f-feb3e6d30ba573ba23f3bd1291ca173b7879706d1fe039c34d53a4fdcdf33ede-1615537707
+text
+34/67
+md5
+0e55ead3b8fd305d9a54f78c7b56741a
+sha1
+f7b084e581a8dcea450c2652f8058d93797413c3
+sha256
+2b9838da7edb0decd32b086e47a31e8f5733b5981ad8247a2f9508e232589bff
+datetime
+2021-03-12T08:28:47+00:00
+link
+https://www.virustotal.com/gui/file/2b9838da7edb0decd32b086e47a31e8f5733b5981ad8247a2f9508e232589bff/detection/f-2b9838da7edb0decd32b086e47a31e8f5733b5981ad8247a2f9508e232589bff-1615537727
+text
+37/69
