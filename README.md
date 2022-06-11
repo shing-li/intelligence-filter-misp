@@ -1,7 +1,7 @@
 # intelligence-filter-misp
 
-使用CIRCL.lu的公開情資做解析
-https://www.circl.lu/doc/misp/feed-osint/
+使用CIRCL.lu的公開情資做解析 <br>
+https://www.circl.lu/doc/misp/feed-osint/ <br>
 
 ```
 python3 OSINT.py
@@ -13,10 +13,10 @@ python3 OSINT.py
 5. 若virustotal沒有相關的資料 => 歸類為Type 1 error
 6. 建立type1Error_uuid.txt，儲存Type 1 error的uuid
 
-執行完會產生md5_file.txt檔(相依於當前分析的情資)
-Virustotal：
-有分析資料 => 情資可信
-無分析資料 => Type 1 error => 建立type1Error_uuid.txt檔(該情資的唯一識別碼uuid)
+執行完會產生md5_file.txt檔(相依於當前分析的情資)<br>
+Virustotal：<br>
+有分析資料 => 情資可信<br>
+無分析資料 => Type 1 error => 建立type1Error_uuid.txt檔(該情資的唯一識別碼uuid)<br><br>
 
 ```
 python3 deleteEvent.py
