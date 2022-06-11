@@ -1,4 +1,4 @@
-from multiprocessing.sharedctypes import Value
+import os
 import requests
 import urllib3
 from bs4 import BeautifulSoup
@@ -8,7 +8,7 @@ def creat_md5_list():
     # test file1: 0165e5d7-51e6-4c2e-a382-1dd1e706f7bb.json
     # test file2: 4b475a5f-ea47-4f2f-aea3-d8ba9bd1b6b6.json
     urllib3.disable_warnings()
-    r1 = requests.get("https://www.circl.lu/doc/misp/feed-osint/0165e5d7-51e6-4c2e-a382-1dd1e706f7bb.json", verify=False)
+    r1 = requests.get("https://www.circl.lu/doc/misp/feed-osint/4b475a5f-ea47-4f2f-aea3-d8ba9bd1b6b6.json", verify=False)
     #print(r1.status_code)
 
     intelli = r1.json()
@@ -40,11 +40,14 @@ def organize_list():
             if line == '':
                 flag1 = True
     
-    with open('md5_file.txt', 'w') as f:
+    with open('md5_file.txt', 'w') as f:    #create a file that store md5's hash value
         print(store)
         for data in store:
             f.write(data)
             f.write('\n')
+
+    if os.path.exists("temp.txt"):  #delete temp.txt
+        os.remove("temp.txt")
 
 def vt_scan(uuid):
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
