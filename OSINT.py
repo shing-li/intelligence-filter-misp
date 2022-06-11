@@ -4,6 +4,8 @@ import urllib3
 from bs4 import BeautifulSoup
 from jsonpath_ng import jsonpath, parse
 
+vt_api_key = '42186906bac669307672ba33a39ad0f891d820c50539d842881cd2d6b6cad923' #virustotal api key
+
 def creat_md5_list():
     # test file1: 0165e5d7-51e6-4c2e-a382-1dd1e706f7bb.json
     # test file2: 4b475a5f-ea47-4f2f-aea3-d8ba9bd1b6b6.json
@@ -51,11 +53,11 @@ def organize_list():
 
 def vt_scan(uuid):
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
-    params1 = { 'apikey' : ''}
-    checkFlag = False       #CheckFlag如果為真，代表此檔案未受過防毒檢測(不可信)
-    checkList = list()      #情資內部可能有許多hash file，一一檢測並儲存
-    count = 0               #positive數量
-    positiveRatio = 0.0     #positive與total的比值
+    params1 = { 'apikey' : vt_api_key}  
+    checkFlag = False                   #CheckFlag如果為真，代表此檔案未受過防毒檢測(不可信)
+    checkList = list()                  #情資內部可能有許多hash file，一一檢測並儲存
+    count = 0                           #positive數量
+    positiveRatio = 0.0                 #positive與total的比值
     print('uuid: ')
     print(uuid)
     with open('md5_file.txt', 'r') as f:
