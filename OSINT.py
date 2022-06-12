@@ -7,7 +7,7 @@ from googlesearch import search
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context  #unverifiy ssl
 
-vt_api_key = '42186906bac669307672ba33a39ad0f891d820c50539d842881cd2d6b6cad923' #virustotal api key
+vt_api_key = '' #virustotal api key
 
 def creat_md5_list():
     # test file1: 0165e5d7-51e6-4c2e-a382-1dd1e706f7bb.json
