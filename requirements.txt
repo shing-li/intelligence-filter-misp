@@ -1,4 +1,4 @@
 requests
 urllib3
 jsonpath_ng
-beautifulsoup4
+google
